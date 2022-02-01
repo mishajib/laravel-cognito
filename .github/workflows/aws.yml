@@ -1,0 +1,25 @@
+name: Deploy in server
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.aws_ssh_host }}
+          username: ${{ secrets.aws_ssh_username }}
+          port: 22
+          key: ${{ secrets.aws_ssh_key }}
+          script: |
+            cd /var/www/html/laravel-cognito/
+            php artisan down
+            git pull origin master
+            composer install
+            php artisan o:c
+            php artisan up
