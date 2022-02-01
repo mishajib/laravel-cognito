@@ -12,10 +12,10 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.aws_ssh_host }}
-          username: ${{ secrets.aws_ssh_username }}
+          host: ${{ secrets.AWS_SSH_HOST }}
+          username: ${{ secrets.AWS_SSH_USERNAME }}
           port: 22
-          key: ${{ secrets.aws_ssh_key }}
+          key: ${{ secrets.AWS_SSH_KEY }}
           script: |
             cd /var/www/html/laravel-cognito/
             php artisan down
