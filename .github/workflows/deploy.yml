@@ -20,13 +20,14 @@ jobs:
       - name: Generate key
         run: php artisan key:generate
 
-#      - name: Exicute migration
-#        run: php artisan migrate
+      #      - name: Exicute migration
+      #        run: php artisan migrate
 
       - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.2.0
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          server: sftp://mishajib.me:22
           username: ${{ secrets.ftp_username }}
-          password: ${{ secrets.ftp_password }}
-          server-dir: ${{ secrets.ftp_server_dir }}
+          server: ${{ secrets.ftp_server }}
+          ssh_private_key: ${{ secrets.ftp_ssh_key }}
+          remote_path: ${{ secrets.ftp_server_dir }}
+          args: '-o ConnectTimeout=5'
