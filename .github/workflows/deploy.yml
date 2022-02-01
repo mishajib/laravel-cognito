@@ -1,33 +1,25 @@
+name: Deploy in server
 on:
   push:
     branches:
-      - master
-name: 🚀 Deploy website on push
+      - deploy
+
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v2.3.2
-
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-
-      - name: Install Composer Dependencies
-        run: composer install
-
-      - name: Generate key
-        run: php artisan key:generate
-
-      #      - name: Exicute migration
-      #        run: php artisan migrate
-
-      - name: 📂 Sync files
-        uses: wlixcc/SFTP-Deploy-Action@v1.0
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
         with:
-          username: ${{ secrets.ftp_username }}
-          server: ${{ secrets.ftp_server }}
-          password: ${{ secrets.ftp_password }}
-          remote_path: ${{ secrets.ftp_server_dir }}
-          args: '-o ConnectTimeout=5'
+          host: ${{ secrets.ftp_server }}
+          username: ${{ secrets.fpt_username }}
+          password: ${{ secrets.fpt_password }}
+          port: ${{ secrets.ftp_port }}
+          script: |
+            cd /home/rwbnmtbh/public_html/aws-cognito/
+            php artisan down
+            git pull origin master
+            composer install
+            php artisan o:c
+            php artisan up
