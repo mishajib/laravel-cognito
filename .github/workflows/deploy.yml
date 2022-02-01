@@ -28,6 +28,6 @@ jobs:
         with:
           username: ${{ secrets.ftp_username }}
           server: ${{ secrets.ftp_server }}
-          ssh_private_key: ${{ secrets.ftp_ssh_key }}
+          password: ${{ secrets.ftp_password }}
           remote_path: ${{ secrets.ftp_server_dir }}
           args: '-o ConnectTimeout=5'
