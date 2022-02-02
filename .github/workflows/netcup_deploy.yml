@@ -1,0 +1,22 @@
+name: Deploy in server
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.NETCUP_SSH_HOST }}
+          username: ${{ secrets.NETCUP_SSH_USERNAME }}
+          port: ${{ secrets.NETCUP_SSH_PORT }}
+          password: ${{ secrets.NETCUP_SSH_PASSWORD }}
+          script: |
+            cd /var/www/
+            whoami
+            pwd
