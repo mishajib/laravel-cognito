@@ -14,7 +14,7 @@ jobs:
         with:
           host: ${{ secrets.NETCUP_SSH_HOST }}
           username: ${{ secrets.NETCUP_SSH_USERNAME }}
-          password: ${{ secrets.NETCUP_SSH_PASSWORD }}
+          key: ${{ secrets.NETCUP_SSH_KEY }}
           port: ${{ secrets.NETCUP_SSH_PORT }}
           script: |
             cd /var/www/
