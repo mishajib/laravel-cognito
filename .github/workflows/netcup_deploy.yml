@@ -15,7 +15,7 @@ jobs:
           debug: true
           host: ${{ secrets.NETCUP_SSH_HOST }}
           username: ${{ secrets.NETCUP_SSH_USERNAME }}
-          password: ${{ secrets.NETCUP_SSH_PASSWORD }}
+          key: ${{ secrets.NETCUP_SSH_KEY }}
           script: |
             cd /var/www/
             whoami
