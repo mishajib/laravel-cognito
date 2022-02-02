@@ -17,7 +17,7 @@ jobs:
           port: 22
           key: ${{ secrets.AWS_SSH_KEY }}
           script: |
-            cd /var/www/html/laravel-cognito/
+            cd /var/www/laravel-cognito/
             php artisan down
             git pull origin master
             composer install
