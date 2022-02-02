@@ -18,5 +18,6 @@ jobs:
           key: ${{ secrets.C_SSH_KEY }}
           passphrase: ${{ secrets.C_SSH_PASSWORD }}
           script: |
+            cd /home/rwbnmtbh/public_html/aws-cognito/
             pwd
             whoami
