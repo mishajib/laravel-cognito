@@ -12,10 +12,10 @@ jobs:
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
+          debug: true
           host: ${{ secrets.NETCUP_SSH_HOST }}
           username: ${{ secrets.NETCUP_SSH_USERNAME }}
-          key: ${{ secrets.NETCUP_SSH_KEY }}
-          port: ${{ secrets.NETCUP_SSH_PORT }}
+          password: ${{ secrets.NETCUP_SSH_PASSWORD }}
           script: |
             cd /var/www/
             whoami
