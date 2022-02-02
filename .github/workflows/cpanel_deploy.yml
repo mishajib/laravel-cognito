@@ -16,6 +16,7 @@ jobs:
           host: ${{ secrets.C_HOST }}
           username: ${{ secrets.C_USERNAME }}
           key: ${{ secrets.C_SSH_KEY }}
+          passphrase: ${{ secrets.C_SSH_PASSWORD }}
           script: |
             pwd
             whoami
