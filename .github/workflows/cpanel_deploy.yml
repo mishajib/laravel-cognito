@@ -19,5 +19,8 @@ jobs:
           passphrase: ${{ secrets.C_SSH_PASSWORD }}
           script: |
             cd /home/rwbnmtbh/public_html/aws-cognito/
-            pwd
-            whoami
+            php artisan down
+            git pull origin master
+            composer install
+            php artisan o:c
+            php artisan up
